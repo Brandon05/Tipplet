@@ -16,11 +16,6 @@ class SettingsViewController: UIViewController {
     var defaultTip: Double!
     let defaults = NSUserDefaults.standardUserDefaults()
     var pickerData: String!
-    
-    
-   
-    
-    //let switchState = true
     let switchState = "switchState"
     
     override func viewDidLoad() {
@@ -30,18 +25,11 @@ class SettingsViewController: UIViewController {
         
         let tipLabel = defaults.integerForKey("stepperLabel").description
         defaultTipLabel.text = "\(tipLabel)%"
-        
-        
-        
-        
+
         roundSwitch.on =  NSUserDefaults.standardUserDefaults().boolForKey("switchState")
         
         roundSwitch.addTarget(self, action: Selector("roundSwitchChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         
-        
-        
-        
-       
         // Do any additional setup after loading the view.
     }
 
@@ -53,9 +41,6 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         print("view will appear")
-        
-        
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -64,13 +49,11 @@ class SettingsViewController: UIViewController {
         let tipLabel = defaults.integerForKey("stepperLabel").description
         defaultTipLabel.text = "\(tipLabel)%"
         tipStepper.value = defaults.doubleForKey("stepperLabel")
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         print("view will disappear")
-        
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -91,17 +74,6 @@ class SettingsViewController: UIViewController {
         defaults.setInteger(tip3, forKey: "stepperLabel")
         defaults.setFloat(tip2, forKey: "stepperValue")
         defaults.setDouble(tip, forKey: "tipDefault")
-        //var stepperValueChanged = tipStepper.value
-        
     }
-
-
-
-    
-    
-
-    
-       
-        
     }
 
