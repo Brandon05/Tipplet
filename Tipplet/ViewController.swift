@@ -33,14 +33,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return round(total) / split
     }
     
-    
-    
-    
-    
-
-
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -54,15 +46,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         tipPercentage = defaults.doubleForKey("tipDefault")
         split = 1.0
         splitPicker.hidden = true
-        
-        
-        
-        
-
-        
     }
-
-
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -71,13 +56,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         print("view will appear")
-        
-        
-        
-        
-        
-        
-    self.tipSlider.value = defaults.floatForKey("stepperValue")
+        self.tipSlider.value = defaults.floatForKey("stepperValue")
         let tipPercLabelText = defaults.integerForKey("stepperLabel").description
         tipPercentageLabel.text = "\(tipPercLabelText)%"
         //prevent tipPercentage from being nil before user interaction
@@ -89,11 +68,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print("view did appear")
-        
-        
         billField.becomeFirstResponder()
-        
-
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -106,10 +81,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         print("view did disappear")
     }
     
-   
-    
-    
-//splitPicker functions
+    //splitPicker functions
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -145,13 +117,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         tipPercentage = Double(sender.value) * 0.01
         tipPercentageLabel.text = ("\(tipPercentage! * 100)%")
         tipPercentageLabel.text = String(format: "%.0f%%", tipPercentage! * 100)
-        
-        
     }
-    
-    
-    
-// Main Function; when billField editing change
+   
+    // Main Function; when billField editing change
    
     @IBAction func onEditingChanged(sender: AnyObject) {
         
@@ -177,29 +145,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             tipLabel.text = String(format: "$%.2f", tip)
             totalLabel.text = String(format: "$%.2f", total)
         } else {
-        
             tipLabel.text = "$0.00"
             totalLabel.text = "$0.00"
-            
         }
     }
     
-        
-        
-    
-    
-    
-    
-        @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
+       @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
            //Reloading totals after switch state
+           tipPercentage = defaults.doubleForKey("tipDefault")
            
-            
-            
-                
-                tipPercentage = defaults.doubleForKey("tipDefault")
-            
-            
-            
             let billAmount = Double(billField.text!)
             
             if defaults.boolForKey("switchState") == true && billAmount != nil {
@@ -222,35 +176,22 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 
                 tipLabel.text = String(format: "$%.2f", tip)
                 totalLabel.text = String(format: "$%.2f", total)
-                
-                
-                
+               
             } else {
                 
                 tipLabel.text = "$0.00"
                 totalLabel.text = "$0.00"
-                
-                
+               
             }
-            
-            
-
         }
-    
-            
-            
-           
-            
-    
-    
-    
-//Dissmiss Keyboard onTap
+ 
+        //Dissmiss Keyboard onTap
     
         @IBAction func keyboardDismiss(sender: AnyObject) {
         
         view.endEditing(true)
         splitPicker.hidden = (true)
-    }
+        }
 
 }
 
